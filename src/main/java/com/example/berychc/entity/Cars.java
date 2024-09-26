@@ -11,6 +11,7 @@ import javax.validation.constraints.Min;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cars {

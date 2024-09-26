@@ -24,6 +24,12 @@ public class CarsServiceMockTest {
     private CarsService service;
 
     @Test
+    @DisplayName("Проверка сервиса не null")
+    void CarServiceTest() {
+        Assertions.assertNotNull(service);
+    }
+
+    @Test
     @DisplayName("Тест метода Create и Update")
     void createOrUpdateCarsTest() {
         Cars expected = new Cars(1, "Bmw", "1-es", "E87", (short) 115);
@@ -60,7 +66,7 @@ public class CarsServiceMockTest {
     }
 
     @Test
-    @DisplayName("Я тупо хуй")
+    @DisplayName("Проверка метода DeleteById")
     void deleteByIdTest() {
         Cars expected = new Cars(1, "Bmw", "1-es", "E87", (short) 115);
         when(repository.save(expected)).thenReturn(expected);

@@ -16,6 +16,12 @@ class CarsServiceTest {
     private CarsService service;
 
     @Test
+    @DisplayName("Проверка сервиса не null")
+    void CarServiceTest() {
+        Assertions.assertNotNull(service);
+    }
+
+    @Test
     @DisplayName("Тест метода Create и Update")
     void createOrUpdateTest() {
         // Создаем экземпляр машины
