@@ -7,9 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @OpenAPIDefinition
 public class BerychcApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(BerychcApplication.class, args);
 	}
-
 }

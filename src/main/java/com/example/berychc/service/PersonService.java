@@ -1,7 +1,7 @@
 package com.example.berychc.service;
 
-import com.example.berychc.entity.Cars;
-import com.example.berychc.repository.CarsRepository;
+import com.example.berychc.entity.Person;
+import com.example.berychc.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -11,18 +11,18 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class CarsService {
-
-    private final CarsRepository repository;
+public class PersonService {
+    
+    private final PersonRepository repository;
 
     /**
      * Метод создания и обновления сущности
-     * @param cars
+     * @param person
      * @return new car or update car
      */
-    public Cars createOrUpdateCar(Cars cars) {
-        log.info("Вызван метод - createOrUpdateCar");
-        return repository.save(cars);
+    public Person createOrUpdatePerson(Person person) {
+        log.info("Вызван метод - createOrUpdatePerson");
+        return repository.save(person);
     }
 
     /**
@@ -30,8 +30,8 @@ public class CarsService {
      * @param id
      * @return id
      */
-    public Optional<Cars> getCarById(Integer id) {
-        log.info("Вызван  метод - GetCarById");
+    public Optional<Person> getPersonById(Integer id) {
+        log.info("Вызван  метод - getCarById");
         return repository.findById(id);
     }
 
@@ -39,8 +39,8 @@ public class CarsService {
      * Метод удаления сущности
      * @param id
      */
-    public void deleteCarById(Integer id) {
-        log.info("Вызван метод - deleteCar");
+    public void deletePersonById(Integer id) {
+        log.info("Вызван метод - deletePerson");
         repository.deleteById(id);
     }
 }

@@ -1,7 +1,7 @@
 package com.example.berychc.controller;
 
-import com.example.berychc.entity.Cars;
-import com.example.berychc.service.CarsService;
+import com.example.berychc.entity.Person;
+import com.example.berychc.service.PersonService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,21 +13,21 @@ import javax.persistence.EntityNotFoundException;
 
 @Slf4j
 @RestController
-@RequestMapping("/cars")
-@Tag(name = "Контроллер для работы с данными о машине")
-public class CarsController {
-
+@RequestMapping("/person")
+@Tag(name = "Контроллер для работы с данными о персоне")
+public class PersonController {
+    
     @Autowired
-    private CarsService service;
+    private PersonService service;
 
     @PostMapping
-    public ResponseEntity<?> createOrUpdateCar(@RequestBody Cars cars) {
+    public ResponseEntity<?> createOrUpdatePerson(@RequestBody Person person) {
         try {
-            Cars savedCar = service.createOrUpdateCar(cars);
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedCar);  // Возвращаем статус 201 CREATED и тело ответа с сохранённой машиной
+            Person savedPerson = service.createOrUpdatePerson(person);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedPerson);  // Возвращаем статус 201 CREATED и тело ответа с сохранённой машиной
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(cars + "Не найдена");  // Если переданный идентификатор (если есть) не найден
+                    .body(person + "Не найдена");  // Если переданный идентификатор (если есть) не найден
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Произошла ошибка");  // Общая ошибка
@@ -35,28 +35,28 @@ public class CarsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getCarById(@PathVariable Integer id) {
+    public ResponseEntity<?> getPersonById(@PathVariable Integer id) {
         try {
-            // Получаем объект Cars из Optional
-            Cars car = service.getCarById(id).orElseThrow(()
+            // Получаем объект person из Optional
+            Person person = service.getPersonById(id).orElseThrow(()
                     -> new EntityNotFoundException("Машина не найдена с id: " + id));
-            return ResponseEntity.ok(car);  // Возвращаем статус 200 OK и объект автомобиля
+            return ResponseEntity.ok(person);  // Возвращаем статус 200 OK и объект автомобиля
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());  // Если автомобиль не найден
         } catch (Exception e) {
-            log.error("Ошибка при получении автомобиля", e);  // Логируем общую ошибку
+            log.error("Ошибка при получении person", e);  // Логируем общую ошибку
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Произошла ошибка");  // Общая ошибка
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable Integer id) {
+    public ResponseEntity<?> deletePersonById(@PathVariable Integer id) {
         try {
-            service.deleteCarById(id);
+            service.deletePersonById(id);
             return ResponseEntity.ok().build();  // Возвращаем статус 200 OK без тела ответа
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Машина с ID " + id + " не найдена"); // Возвращаем статус 404 Not Found
+                    .body("Person с ID " + id + " не найдена"); // Возвращаем статус 404 Not Found
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Произошла ошибка при удалении машины"); // Обработка других ошибок
