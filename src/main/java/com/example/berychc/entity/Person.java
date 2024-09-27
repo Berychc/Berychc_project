@@ -16,6 +16,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "person")
 @Schema(description = "Данные о персоне")
 public class Person {
