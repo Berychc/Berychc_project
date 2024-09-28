@@ -49,7 +49,7 @@ public class Cars {
     @Max(2000)
     private Short horsePower;
 
-    @ManyToOne
-    @JoinColumn(name = "person_id", nullable = false)
-    private Person person;
+//    @ManyToOne
+//    @JoinColumn(name = "person_id", nullable = false)
+//    private Person person;
 }

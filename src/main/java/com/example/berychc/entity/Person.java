@@ -49,7 +49,7 @@ public class Person {
     @Schema(name = "phoneNumber", description = "+7", nullable = true)
     private String phoneNumber;
 
-    @JsonIgnore // !
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-    private List<Cars> cars = new ArrayList<>();
+//    @JsonIgnore // !
+//    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+//    private List<Cars> cars = new ArrayList<>();
 }
