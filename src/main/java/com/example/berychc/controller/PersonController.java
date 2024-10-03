@@ -37,9 +37,7 @@ public class PersonController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getPersonById(@PathVariable Integer id) {
         try {
-            // Получаем объект person из Optional
-            Person person = service.getPersonById(id).orElseThrow(()
-                    -> new EntityNotFoundException("Машина не найдена с id: " + id));
+            Person person = service.getPersonById(id);
             return ResponseEntity.ok(person);  // Возвращаем статус 200 OK и объект автомобиля
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());  // Если автомобиль не найден
