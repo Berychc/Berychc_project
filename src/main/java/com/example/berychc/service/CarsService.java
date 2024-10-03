@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,9 +32,13 @@ public class CarsService {
      * @param id
      * @return id
      */
-    public Optional<Cars> getCarById(Integer id) {
+    public Cars getCarById(Integer id) {
         log.info("Вызван  метод - GetCarById");
-        return repository.findById(id);
+        List<Cars> cars = repository.findAll();
+        return cars.stream()
+                .filter(car -> car.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new EntityNotFoundException("Car with id " + id + " not found"));
     }
 
     /**
